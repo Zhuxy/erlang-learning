@@ -1,0 +1,61 @@
+module 'test' ['add_map_values'/1,
+	       'double'/1,
+	       'list_length'/1,
+	       'module_info'/0,
+	       'module_info'/1]
+    attributes [%% Line 1
+		'file' =
+		    %% Line 1
+		    [{[116|[101|[115|[116|[46|[101|[114|[108]]]]]]]],1}]]
+'double'/1 =
+    %% Line 4
+    fun (_@c0) ->
+	%% Line 5
+	call 'erlang':'*'
+	    (2, _@c0)
+'list_length'/1 =
+    %% Line 7
+    fun (_@c0) ->
+	case _@c0 of
+	  <[_@c3|Rest]> when 'true' ->
+	      let <_@c1> =
+		  apply %% Line 8
+			'list_length'/1
+		      (%% Line 8
+		       Rest)
+	      in  %% Line 8
+		  call 'erlang':'+'
+		      (1, _@c1)
+	  %% Line 10
+	  <[]> when 'true' ->
+	      %% Line 11
+	      0
+	  ( <_@c2> when 'true' ->
+		( primop 'match_fail'
+		      ({'function_clause',_@c2})
+		  -| [{'function_name',{'list_length',1}}] )
+	    -| ['compiler_generated'] )
+	end
+'add_map_values'/1 =
+    %% Line 13
+    fun (_@c0) ->
+	case _@c0 of
+	  <~{'key1':=V1,'key2':=V2}~> when 'true' ->
+	      %% Line 14
+	      call 'erlang':'+'
+		  (V1, V2)
+	  ( <_@c1> when 'true' ->
+		( primop 'match_fail'
+		      ({'function_clause',_@c1})
+		  -| [{'function_name',{'add_map_values',1}}] )
+	    -| ['compiler_generated'] )
+	end
+'module_info'/0 =
+    fun () ->
+	call 'erlang':'get_module_info'
+	    ('test')
+'module_info'/1 =
+    fun (_@c0) ->
+	call 'erlang':'get_module_info'
+	    ('test', _@c0)
+end

@@ -1,5 +1,5 @@
 -module(test).
--export([double/1, list_length/1, add_map_values/1, server/0, add/1]).
+-export([double/1, list_length/1, add_map_values/1, server/0, add/1, c/1]).
 
 -record(message, {message, from}).
 
@@ -34,3 +34,18 @@ server() ->
 add(X) ->
 	Y = X * 2,
 	fun(T) -> T + Y end.
+
+a() ->
+	io:format("a!~n", []),
+	a.
+b() ->
+	io:format("b!~n", []),
+	b.
+
+c(N) ->
+	c(N, a(), b()).
+c(1, A, _B) ->
+	io:format("call A - ~s ~n", [A]);
+c(_, _A, B) ->
+	io:format("call B - ~s ~n", [B]).
+
